@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  /* Estilos CSS para simular un diseño tipo iOS */
+  body, input, select, textarea, button {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  h1 {
+    color: #000;
+    text-align: center;
+  }
+
+  label {
+    display: block;
+    margin-top: 1em;
+    color: #333;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  button {
+    width: 100%;
+    background-color: #007aff;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #005ecb;
+  }
+</style>
+
+<div class="container">
+  <h1>Crear Orden Interna de Trabajo (OIT)</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    
+    <!-- Renderiza los campos del formulario OIT -->
+    {{ form.as_p }}
+
+    <button type="submit">Guardar OIT</button>
+  </form>
+</div>
+
+{% endblock %}
+
+
+

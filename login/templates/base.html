@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Mi Aplicación{% endblock %}</title>
+    <!-- Estilos -->
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f2f2f2;
+        display: flex;
+
+      }
+      .sidebar {
+        width: 200px; /* o el ancho de tu sidebar */
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 250px;
+        height: 100%;
+        background-color: #333;
+        color: white;
+        padding: 15px;
+      }
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+      .sidebar ul li {
+        padding: 8px;
+        margin-bottom: 5px;
+        background-color: #444;
+        border-radius: 5px;
+      }
+      .sidebar ul li a {
+        color: white;
+        text-decoration: none;
+      }
+      .content {
+        flex-grow: 1;
+        margin-left: 250px; /* mismo ancho que tu sidebar */
+        margin-left: 300px; /* Espacio para el sidebar */
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <!-- Elementos del Sidebar -->
+      <h2>Menú</h2>
+      <ul>
+        <li>
+          <a href="javascript:void(0)" onclick="toggleOITMenu()">OIT</a>
+          <ul id="oitMenu" style="display: none">
+                <li><a href="{% url 'listar_oits' %}">Lista OITs</a></li>
+                <li><a href="{% url 'oits_completadas' %}">OITs Completadas</a></li>
+                <li><a href="{% url 'crear_oit' %}">Crear OIT</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Visualizaciones</a></li>
+        <li><a href="#">Pendientes</a></li>
+        <li><a href="#">Compras</a></li>
+        <li><a href="{% url 'signout' %}">Cerrar Sesión</a></li>
+      </ul>
+    </div>
+
+    <div class="content">
+      {% block content %}
+
+      
+      <!-- El contenido específico de cada página irá aquí -->
+      {% endblock %}
+    </div>
+
+    <script>
+      function toggleOITMenu() {
+        var oitMenu = document.getElementById("oitMenu");
+        if (oitMenu.style.display === "none") {
+          oitMenu.style.display = "block";
+        } else {
+          oitMenu.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

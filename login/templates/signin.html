@@ -1,0 +1,48 @@
+
+{% block content %}
+<style>
+    body {
+        background-color: #f2f2f2; /* Color de fondo gris claro */
+        font-family: 'Arial', sans-serif; /* Fuente similar a la usada en iOS */
+    }
+    .login-container {
+        width: 100%;
+        max-width: 400px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .login-form input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .login-form button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007aff; /* Azul característico de iOS */
+        color: white;
+        cursor: pointer;
+    }
+    .login-form button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+</div>
+{% endblock %}

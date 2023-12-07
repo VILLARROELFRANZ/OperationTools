@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  /* Estilos CSS para simular un diseño tipo iOS */
+  body, input, select, textarea, button {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  h1 {
+    color: #000;
+    text-align: center;
+  }
+
+  label {
+    display: block;
+    margin-top: 1em;
+    color: #333;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  button {
+    width: 100%;
+    background-color: #007aff;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #005ecb;
+  }
+</style>
+
+
+
+<div class="container">
+    <h1>Editar OIT {{ oit.clase_oit }}</h1>
+
+    <form action="{% url 'editar_oit' oit.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <label for="id_completado">Completado:</label>
+        <input type="checkbox" id="id_completado" name="completado" {% if oit.completado %}checked{% endif %}>
+
+        <button type="submit" class="btn btn-primary">Actualizar OIT</button>
+    </form>
+
+    <a href="{% url 'detalle_oit' oit.id %}">Cancelar y volver a los detalles</a>
+</div>
+
+{% endblock %}
+
+
+
+

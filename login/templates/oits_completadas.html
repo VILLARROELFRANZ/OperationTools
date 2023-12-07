@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .container {
+        /* Estilos para el contenedor */
+        padding: 20px;
+    }
+    table {
+        /* Estilos para la tabla */
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        /* Estilos para las celdas de la tabla */
+        border: 1px solid #e30e0e;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        /* Estilos para los encabezados de la tabla */
+        background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+        /* Estilos para las filas pares de la tabla */
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        /* Estilos para el hover en las filas de la tabla */
+        background-color: #ddd;
+    }
+    a {
+        /* Estilos para los enlaces */
+        color: blue;
+        text-decoration: none;
+    }
+</style>
+
+
+<div class="container">
+    <h1>Listado de OITs Completadas</h1>
+
+    {% if oits %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Numero de OIT</th>
+                    <th>Tipo</th>
+                    <th>Equipo</th>
+                    <th>Fecha de Emisión</th>
+                    <th>Actividades Pendientes</th>
+                    <th>Completado?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for oit in oits %}
+                    <tr>
+                        <td>{{ oit.numero_oit }}</td>
+                        <td>{{ oit.get_tipo_oit_display }}</td>
+                        <td>{{ oit.equipo }}</td>
+                        <td>{{ oit.fecha_emision }}</td>
+                        <td>{{ oit.actividades_pendientes }}</td> <!-- Asumiendo que tienes una fecha de finalización -->
+                        <td>{{ oit.completado|yesno:"Sí,No" }}</td>
+                        
+                        <td>
+                            <a href="{% url 'detalle_oit' oit.id %}">Ver Detalle</a>
+                            <!-- Aquí puedes agregar acciones específicas para OITs completadas si es necesario -->
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay OITs completadas en este momento.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+
+

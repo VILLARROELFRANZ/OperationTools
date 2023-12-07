@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Detalle de la OIT {{ oit.numero_oit }}</h1>
+
+    <div class="oit-details">
+        <p><strong>Tipo de OIT:</strong> {{ oit.get_tipo_oit_display }}</p>
+        <p><strong>Equipo:</strong> {{ oit.equipo }}</p>
+        <p><strong>Serial:</strong> {{ oit.serial }}</p>
+        <p><strong>Descripción del Equipo:</strong> {{ oit.descripcion_eq }}</p>
+        <p><strong>Fecha de Emisión:</strong> {{ oit.fecha_emision }}</p>
+        <p><strong>Fecha de Inicio de Ejecución:</strong> {{ oit.fecha_inicio_ejecucion }}</p>
+        <p><strong>Hora de Inicio:</strong> {{ oit.hora_inicio }}</p>
+        <p><strong>Dato Actual Frecuencia:</strong> {{ oit.dato_actual_frecuencia }}</p>
+        <p><strong>Fecha Final de Ejecución:</strong> {{ oit.fecha_final_ejecucion }}</p>
+        <p><strong>Hora Fin:</strong> {{ oit.hora_fin }}</p>
+        <p><strong>Reporte Técnico:</strong> {{ oit.reporte_tecnico }}</p>
+        <p><strong>Actividad Realizada:</strong> {{ oit.actividad_realizada }}</p>
+        <p><strong>Actividades Pendientes:</strong> {{ oit.actividades_pendientes }}</p>
+        <p><strong>Completado:</strong> {{ oit.completado|yesno:"Sí,No" }}</p>
+    </div>
+
+    <a href="{% url 'editar_oit' oit.id %}">Editar OIT</a>
+    <a href="{% url 'eliminar_oit' oit.id %}" class="eliminar">Eliminar OIT</a>
+</div>
+
+{% endblock %}
+
+
+
